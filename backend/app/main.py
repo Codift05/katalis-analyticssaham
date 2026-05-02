@@ -1,9 +1,12 @@
+import os
+
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from .database import SessionLocal, engine
 from . import models, schemas, crud
 from .nlp import SentimentModel
+from .seed import seed_news
 
 app = FastAPI(title="Katalis API")
 
@@ -44,3 +47,14 @@ def classify(payload: schemas.SentimentRequest):
         raise HTTPException(status_code=503, detail="Model not available")
     labels = sentiment_model.predict(payload.texts)
     return schemas.SentimentResponse(labels=labels)
+
+
+@app.post("/admin/seed", response_model=schemas.SeedResponse)
+def seed_database(reset: bool = False, db: Session = Depends(get_db)):
+    if os.getenv("KATALIS_DEV_MODE", "0") != "1":
+        raise HTTPException(status_code=403, detail="Not allowed")
+    try:
+        count = seed_news(db, reset=reset)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+    return schemas.SeedResponse(seeded=count, reset=reset)

@@ -1,4 +1,5 @@
 from typing import List
+from datetime import datetime
 from pydantic import BaseModel, Field
 
 
@@ -14,6 +15,7 @@ class NewsCreate(NewsBase):
 
 class NewsRead(NewsBase):
     id: int
+    created_at: datetime | None = None
 
     class Config:
         from_attributes = True
@@ -25,3 +27,8 @@ class SentimentRequest(BaseModel):
 
 class SentimentResponse(BaseModel):
     labels: List[str]
+
+
+class SeedResponse(BaseModel):
+    seeded: int
+    reset: bool
