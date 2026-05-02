@@ -104,6 +104,44 @@ backend/app/models/sentiment_model.pkl
 ```
 If the file is missing, the `/sentiment` endpoint responds with HTTP 503.
 
+## Train a Local Model
+Use the sample dataset or replace it with your own.
+
+```bash
+cd backend
+python scripts/train_model.py
+```
+
+Training data path:
+```
+backend/data/sample_train.csv
+```
+
+## Seed the Database
+Populate SQLite with sample headlines for the dashboard.
+
+```bash
+cd backend
+python scripts/seed_db.py
+```
+
+Seed data path:
+```
+backend/data/sample_seed.csv
+```
+
+## Dev-only Seed Endpoint
+Enable the endpoint by setting:
+```
+KATALIS_DEV_MODE=1
+```
+
+Then call:
+```
+POST /admin/seed
+POST /admin/seed?reset=true
+```
+
 ## UI/UX Notes
 - Typography uses small, measured sizes (text-xs to text-lg).
 - Card layout uses tight padding and subtle borders.
