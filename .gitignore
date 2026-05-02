@@ -18,5 +18,8 @@ node_modules/
 # SQLite
 *.db
 
+# Model artifacts
+backend/app/models/*.pkl
+
 # OS
 .DS_Store
