@@ -42,11 +42,21 @@ import { CanvasRenderer } from "echarts/renderers";
 
 use([PieChart, TooltipComponent, LegendComponent, CanvasRenderer]);
 
-const values = {
-  positive: 128,
-  negative: 64,
-  neutral: 92
-};
+const { data: rows } = useNews();
+
+const values = computed(() => {
+  const base = { positive: 0, negative: 0, neutral: 0 };
+  for (const item of rows.value ?? []) {
+    if (item.sentiment === "Positive") {
+      base.positive += 1;
+    } else if (item.sentiment === "Negative") {
+      base.negative += 1;
+    } else {
+      base.neutral += 1;
+    }
+  }
+  return base;
+});
 
 const option = computed(() => ({
   tooltip: {
@@ -73,9 +83,9 @@ const option = computed(() => ({
         show: false
       },
       data: [
-        { value: values.positive, name: "Positive", itemStyle: { color: "#16a34a" } },
-        { value: values.negative, name: "Negative", itemStyle: { color: "#dc2626" } },
-        { value: values.neutral, name: "Neutral", itemStyle: { color: "#64748b" } }
+        { value: values.value.positive, name: "Positive", itemStyle: { color: "#16a34a" } },
+        { value: values.value.negative, name: "Negative", itemStyle: { color: "#dc2626" } },
+        { value: values.value.neutral, name: "Neutral", itemStyle: { color: "#64748b" } }
       ]
     }
   ]
