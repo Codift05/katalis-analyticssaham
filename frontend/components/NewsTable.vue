@@ -2,7 +2,13 @@
   <div class="card p-4">
     <div class="flex items-center justify-between">
       <h2 class="text-base font-semibold text-ink">Latest Headlines</h2>
-      <button class="text-xs text-muted hover:text-ink">Refresh</button>
+      <button
+        class="text-xs text-muted hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
+        :disabled="pending"
+        @click="refresh"
+      >
+        {{ pending ? "Refreshing..." : "Refresh" }}
+      </button>
     </div>
     <div class="mt-4 overflow-hidden rounded-md border border-slate-200">
       <table class="min-w-full text-xs">
@@ -15,7 +21,16 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-slate-200">
-          <tr v-for="item in rows" :key="item.id">
+          <tr v-if="pending">
+            <td class="px-3 py-3 text-muted" colspan="4">Loading data...</td>
+          </tr>
+          <tr v-else-if="error">
+            <td class="px-3 py-3 text-muted" colspan="4">Failed to load data.</td>
+          </tr>
+          <tr v-else-if="rows.length === 0">
+            <td class="px-3 py-3 text-muted" colspan="4">No headlines available.</td>
+          </tr>
+          <tr v-else v-for="item in rows" :key="item.id">
             <td class="px-3 py-2 text-muted">{{ item.source }}</td>
             <td class="px-3 py-2 text-ink">{{ item.title }}</td>
             <td class="px-3 py-2">
@@ -26,7 +41,7 @@
                 {{ item.sentiment }}
               </span>
             </td>
-            <td class="px-3 py-2 text-muted">{{ item.time }}</td>
+            <td class="px-3 py-2 text-muted">{{ formatTime(item.created_at) }}</td>
           </tr>
         </tbody>
       </table>
@@ -35,29 +50,37 @@
 </template>
 
 <script setup lang="ts">
-const rows = [
-  {
-    id: 1,
-    source: "IDX Market",
-    title: "Banking sector leads late-session rebound on liquidity news",
-    sentiment: "Positive",
-    time: "09:12"
-  },
-  {
-    id: 2,
-    source: "Jakarta Wire",
-    title: "Commodity exporters face margin pressure amid FX volatility",
-    sentiment: "Negative",
-    time: "08:44"
-  },
-  {
-    id: 3,
-    source: "Asia Macro",
-    title: "Government reiterates infrastructure spending outlook for 2026",
-    sentiment: "Neutral",
-    time: "08:05"
+import { onBeforeUnmount, onMounted } from "vue";
+
+const { data: rows, pending, error, refresh } = useNews();
+const refreshIntervalMs = 30000;
+let timer: ReturnType<typeof setInterval> | null = null;
+
+onMounted(() => {
+  timer = setInterval(() => {
+    refresh();
+  }, refreshIntervalMs);
+});
+
+onBeforeUnmount(() => {
+  if (timer) {
+    clearInterval(timer);
   }
-];
+});
+
+const formatTime = (value?: string | null) => {
+  if (!value) {
+    return "-";
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "-";
+  }
+  return new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(date);
+};
 
 const badgeClass = (sentiment: string) => {
   if (sentiment === "Positive") {
