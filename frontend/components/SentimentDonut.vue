@@ -76,16 +76,16 @@ const option = computed(() => ({
       avoidLabelOverlap: true,
       itemStyle: {
         borderRadius: 4,
-        borderColor: "#ffffff",
+        borderColor: "#303134",
         borderWidth: 2
       },
       label: {
         show: false
       },
       data: [
-        { value: values.value.positive, name: "Positive", itemStyle: { color: "#16a34a" } },
-        { value: values.value.negative, name: "Negative", itemStyle: { color: "#dc2626" } },
-        { value: values.value.neutral, name: "Neutral", itemStyle: { color: "#64748b" } }
+        { value: values.value.positive, name: "Positive", itemStyle: { color: "#81c995" } },
+        { value: values.value.negative, name: "Negative", itemStyle: { color: "#f28b82" } },
+        { value: values.value.neutral, name: "Neutral", itemStyle: { color: "#9aa0a6" } }
       ]
     }
   ]

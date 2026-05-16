@@ -10,17 +10,17 @@
         {{ pending ? "Refreshing..." : "Refresh" }}
       </button>
     </div>
-    <div class="mt-4 overflow-hidden rounded-md border border-slate-200">
+    <div class="mt-4 overflow-hidden rounded-md border border-borderdark">
       <table class="min-w-full text-xs">
-        <thead class="bg-slate-50 text-muted">
+        <thead class="bg-cardbg text-muted">
           <tr>
-            <th class="px-3 py-2 text-left font-medium">Source</th>
-            <th class="px-3 py-2 text-left font-medium">Headline</th>
-            <th class="px-3 py-2 text-left font-medium">Sentiment</th>
-            <th class="px-3 py-2 text-left font-medium">Time</th>
+            <th class="px-3 py-2 text-left font-medium border-b border-borderdark">Source</th>
+            <th class="px-3 py-2 text-left font-medium border-b border-borderdark">Headline</th>
+            <th class="px-3 py-2 text-left font-medium border-b border-borderdark">Sentiment</th>
+            <th class="px-3 py-2 text-left font-medium border-b border-borderdark">Time</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-slate-200">
+        <tbody class="divide-y divide-borderdark">
           <tr v-if="pending">
             <td class="px-3 py-3 text-muted" colspan="4">Loading data...</td>
           </tr>
@@ -84,11 +84,11 @@ const formatTime = (value?: string | null) => {
 
 const badgeClass = (sentiment: string) => {
   if (sentiment === "Positive") {
-    return "bg-green-50 text-positive border border-green-200";
+    return "bg-[#81c995]/10 text-positive border border-[#81c995]/20";
   }
   if (sentiment === "Negative") {
-    return "bg-red-50 text-negative border border-red-200";
+    return "bg-[#f28b82]/10 text-negative border border-[#f28b82]/20";
   }
-  return "bg-slate-50 text-neutral border border-slate-200";
+  return "bg-cardbg text-neutral border border-borderdark";
 };
 </script>
