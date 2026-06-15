@@ -6,7 +6,7 @@
     </div>
     <div class="mt-4">
       <ClientOnly>
-        <VChart class="h-56" :option="option" autoresize />
+        <VChart class="h-56 cursor-pointer" :option="option" autoresize @click="onChartClick" />
       </ClientOnly>
     </div>
     <div class="mt-4 grid grid-cols-3 gap-2 text-xs">
@@ -43,6 +43,17 @@ import { CanvasRenderer } from "echarts/renderers";
 use([PieChart, TooltipComponent, LegendComponent, CanvasRenderer]);
 
 const { data: rows } = useNews();
+const sentimentFilter = useSentimentFilter();
+
+const onChartClick = (params: any) => {
+  if (params.name) {
+    if (sentimentFilter.value === params.name) {
+      sentimentFilter.value = null;
+    } else {
+      sentimentFilter.value = params.name;
+    }
+  }
+};
 
 const values = computed(() => {
   const base = { positive: 0, negative: 0, neutral: 0 };

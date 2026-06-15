@@ -1,7 +1,12 @@
 <template>
   <div class="card p-4">
     <div class="flex items-center justify-between">
-      <h2 class="text-base font-semibold text-ink">Latest Headlines</h2>
+      <div class="flex items-center gap-3">
+        <h2 class="text-base font-semibold text-ink">Latest Headlines</h2>
+        <span v-if="sentimentFilter" class="bg-cardbg border border-borderdark text-muted text-[10px] px-2 py-0.5 rounded flex items-center gap-1 cursor-pointer hover:text-ink" @click="sentimentFilter = null">
+          Filtered: {{ sentimentFilter }} <span class="text-neutral">&times;</span>
+        </span>
+      </div>
       <button
         class="text-xs text-muted hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
         :disabled="pending"
@@ -27,10 +32,10 @@
           <tr v-else-if="error">
             <td class="px-3 py-3 text-muted" colspan="4">Failed to load data.</td>
           </tr>
-          <tr v-else-if="rows.length === 0">
+          <tr v-else-if="filteredRows.length === 0">
             <td class="px-3 py-3 text-muted" colspan="4">No headlines available.</td>
           </tr>
-          <tr v-else v-for="item in rows" :key="item.id">
+          <tr v-else v-for="item in filteredRows" :key="item.id">
             <td class="px-3 py-2 text-muted">{{ item.source }}</td>
             <td class="px-3 py-2 text-ink">{{ item.title }}</td>
             <td class="px-3 py-2">
@@ -50,9 +55,16 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted } from "vue";
+import { onBeforeUnmount, onMounted, computed } from "vue";
 
 const { data: rows, pending, error, refresh } = useNews();
+const sentimentFilter = useSentimentFilter();
+
+const filteredRows = computed(() => {
+  if (!rows.value) return [];
+  if (!sentimentFilter.value) return rows.value;
+  return rows.value.filter(item => item.sentiment === sentimentFilter.value);
+});
 const refreshIntervalMs = 30000;
 let timer: ReturnType<typeof setInterval> | null = null;
 

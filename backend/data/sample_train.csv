@@ -1,4 +1,52 @@
 text,label
+"Laba bersih perusahaan meroket tajam pada kuartal ini",Positive
+"Penjualan kendaraan bermotor anjlok bulan lalu akibat resesi",Negative
+"Bank Indonesia mempertahankan suku bunga acuan",Neutral
+"Investasi asing masuk deras ke pasar modal Indonesia",Positive
+"Inflasi tak terkendali picu kekhawatiran krisis ekonomi",Negative
+"Emiten teknologi laporkan pendapatan stabil",Neutral
+"Pemerintah pangkas pajak untuk dorong daya beli masyarakat",Positive
+"Banyak pabrik tutup dan terjadi badai PHK di sektor tekstil",Negative
+"Perusahaan mengumumkan jadwal pembagian dividen",Neutral
+"IHSG ditutup menghijau setelah rilis data pengangguran yang rendah",Positive
+"Kinerja ekspor menurun drastis karena melemahnya rupiah",Negative
+"Rapat umum pemegang saham berjalan tanpa kejutan",Neutral
+"Akuisisi startup besar bawa angin segar ke sektor digital",Positive
+"Kekurangan pasokan chip hambat produksi otomotif",Negative
+"Volume perdagangan bursa relatif moderat",Neutral
+"Laba operasional bank BUMN naik 40 persen",Positive
+"Skandal korupsi seret harga saham BUMN anjlok",Negative
+"Regulator rilis draf aturan baru terkait bursa karbon",Neutral
+"Optimisme konsumen meningkat tajam menyambut pemilu",Positive
+"Suku bunga bank sentral AS merangkak naik tekan IHSG",Negative
+"Harga minyak mentah dunia bergerak mendatar",Neutral
+"Perusahaan rilis laporan keuangan yang lebih baik dari ekspektasi analis",Positive
+"Gagal bayar obligasi perusahaan properti bikin panik investor",Negative
+"Libur bursa menyambut hari raya",Neutral
+"Bank cetak rekor keuntungan tertinggi dalam sejarah",Positive
+"Perang dagang kembali memanas ganggu rantai pasok global",Negative
+"Menteri keuangan sebut pertumbuhan ekonomi sesuai target",Neutral
+"Bursa saham rebound di akhir sesi",Positive
+"Ketidakpastian politik hancurkan sentimen pasar",Negative
+"Sidang paripurna bahas RAPBN",Neutral
+"Arus modal asing catat rekor pembelian bersih",Positive
+"Pajak ekspor komoditas memukul laba perusahaan tambang",Negative
+"Bursa efek umumkan perubahan jam perdagangan",Neutral
+"Kinerja luar biasa dari saham-saham perbankan raksasa",Positive
+"Kerugian kuartal ini lebih buruk dari prediksi pasar",Negative
+"OJK pantau pergerakan harga saham dengan ketat",Neutral
+"Investor borong saham blue chip di tengah diskon besar",Positive
+"Pemutusan hubungan kerja massal landa perusahaan ritel",Negative
+"Perusahaan ganti susunan direksi baru",Neutral
+"Sektor properti bangkit akibat insentif PPN",Positive
+"Penurunan harga batu bara tekan IHSG",Negative
+"Emiten baru melantai di bursa dengan harga stagnan",Neutral
+"Laba bersih melonjak drastis manajemen proyeksikan pertumbuhan",Positive
+"Skandal pelaporan keuangan akibatkan suspensi perdagangan",Negative
+"Bank umumkan rencana buyback saham",Neutral
+"Sentimen positif mengalir dari perbaikan ekonomi global",Positive
+"Beban operasional bengkak gerus marjin keuntungan",Negative
+"Pergerakan indeks stabil sepanjang hari",Neutral
 "Bank earnings beat expectations and investors show optimism",Positive
 "Currency weakens as inflation surprises the market",Negative
 "Central bank keeps rates unchanged in scheduled meeting",Neutral
@@ -6,26 +54,5 @@ text,label
 "Exporters face margin pressure from FX volatility",Negative
 "Government reiterates medium term fiscal targets",Neutral
 "Tech sector rebounds after strong quarterly guidance",Positive
-"Energy prices fall, weighing on commodity producers",Negative
+"Energy prices fall weighing on commodity producers",Negative
 "Market trades sideways ahead of policy announcement",Neutral
-"Liquidity improves as banks report higher deposits",Positive
-"Supply chain disruption hurts manufacturing outlook",Negative
-"Analysts expect stable growth for next quarter",Neutral
-"Retail sales jump and consumer sentiment improves",Positive
-"Global risk off sentiment drags equities lower",Negative
-"Regulator issues clarification on listing rules",Neutral
-"Dividend increases attract long term investors",Positive
-"Profit warning triggers heavy selling in the sector",Negative
-"FX market stabilizes after intervention",Neutral
-"Foreign inflows return to blue chip equities",Positive
-"Bond yields rise, pressuring growth stocks",Negative
-"Budget revision signals steady fiscal stance",Neutral
-"New project awards boost contractor order books",Positive
-"Weak demand outlook hits automotive shares",Negative
-"Corporate governance update published",Neutral
-"Analyst upgrade drives buying interest",Positive
-"Commodity export tax hike dampens sentiment",Negative
-"Trade balance remains largely unchanged",Neutral
-"Banking sector posts strong loan growth",Positive
-"Higher funding costs reduce profitability",Negative
-"Economic indicators point to balanced momentum",Neutral

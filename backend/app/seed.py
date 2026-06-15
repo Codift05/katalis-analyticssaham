@@ -1,5 +1,7 @@
 import csv
 from pathlib import Path
+import random
+from datetime import datetime, timedelta
 
 from sqlalchemy.orm import Session
 
@@ -34,10 +36,13 @@ def seed_news(db: Session, reset: bool = False) -> int:
 
     rows = _load_rows(SEED_PATH)
     for row in rows:
+        random_minutes = random.randint(0, 24 * 60)
+        created = datetime.utcnow() - timedelta(minutes=random_minutes)
         item = models.News(
             source=row.get("source", "Unknown").strip(),
             title=row.get("title", "").strip(),
-            sentiment=row.get("sentiment", "Neutral").strip()
+            sentiment=row.get("sentiment", "Neutral").strip(),
+            created_at=created
         )
         db.add(item)
     db.commit()
