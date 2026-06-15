@@ -23,3 +23,7 @@ backend/app/models/*.pkl
 
 # OS
 .DS_Store
+
+# Laporan & Agent
+agent.md
+Laporan_Proyek_Katalis.md
